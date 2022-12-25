@@ -1,0 +1,27 @@
+<ul id="nav">
+        {% for i in menu_list %}
+
+            {% if i.descendant %}
+            {%if i.slug == cat_selected or i.id <= cmp %}
+                    <ol>
+                        {%for key,value in spaces.items %}
+                        {%if key == i%}
+                        {% for val in value %}
+                            <li class="inline"><a href="{{ val.get_absolute_url }}">{{val}}</a></li>
+                        {%endfor%}
+                        {% endif %}
+                        {% endfor %}
+                    </ol>
+                    <!--<li class="inline"><a href="#">{{ i }}</a></li>-->
+                    {%endif%}
+                {%if i.depth == 1%}
+                <li class="multi"><a href="{{ i.get_absolute_url }}">{{ i }}</a></li>
+                {%endif%}
+            {%else%}
+                {%if i.depth == 1%}
+                <li><a href="{{ i.get_absolute_url }}">{{ i }}</a></li>
+                {%endif%}
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
